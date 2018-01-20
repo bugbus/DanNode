@@ -1,0 +1,59 @@
+.pell {
+  border-radius: 5px;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  box-sizing: border-box;
+  width: 100%; 
+  height: 100%;
+  background-color: #ABCDEF}
+
+.pell-content {
+  box-sizing: border-box;
+  outline: 0;
+  overflow-x: auto;
+  padding: 10px;
+  height: 100%;
+  width: 100%; 
+  -webkit-app-region: no-drag}
+
+.titleBar{
+  background-color: #FFF;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+  height: 31px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 100%; 
+}
+.ipcBar{
+  background-color: #FFF;
+  height: 31px;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+  border-top-right-radius: 5px;
+  width: 50%; 
+  float: right;
+}
+.pell-actionbar {
+  background-color: #FFF;
+  height: 31px;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+  border-top-left-radius: 5px;
+  width: 50%; 
+  float: left;}
+
+.pell-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  outline: 0;
+  width: 30px; 
+  -webkit-app-region: no-drag}
+
+.ipcButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  outline: 0;
+  width: 30px; 
+  float: right;
+  -webkit-app-region: no-drag}

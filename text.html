@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+    <link href="./dist/pell.css" rel="stylesheet">
+    <title>pell__</title>
+    <style>
+      .mdiv{
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        box-shadow: 0 7px 15px rgba(0, 0, 0, .2);
+      }
+    </style>
+  </head>
+  <body>
+      <div id="pell"></div>
+      <div>
+        Text output:
+        <div id="text-output"></div>
+        HTML output:
+        <pre id="html-output"></pre>
+      </div>
+  </body>
+  <script src="./dist/pell.js"></script>
+  <script>
+    var editor = pell.init({
+    element: document.getElementById('pell'),
+    onChange: function onChange(html) {
+        document.getElementById('text-output').innerHTML = html;
+        document.getElementById('html-output').textContent = html;
+    },
+    styleWithCSS: true,
+    actions: [
+    'addBackColor',
+    'undo',
+    {
+      name: 'imdiv',
+      icon: '<div class=\'mdiv\'>T</div>',
+      title: 'imdiv',
+      result: function result() {
+        alert('imdiv')
+      }
+    },
+    {
+        name: 'color',
+        icon: '<b>C</b>',
+        title: 'color',
+        result: function result() {
+        return pell.exec('ForeColor', 'red');
+        }
+    }, {
+        // 放大到20px
+        name: 'Large',
+        icon: '<b style=\'font-size:20px;\'>A</b>',
+        title: 'Large',
+        result: function result() {
+        return pell.exec('FontSize', '20px');
+        }
+    }, {
+        // 打印
+        name: 'print',
+        icon: '<b style=\'font-size:10px;\'>P</b>',
+        title: 'print',
+        result: function result() {
+        return pell.exec('print');
+        }
+    }, {
+        // 再扩展一个alert
+        name: 'Delete',
+        icon: '<b>V</b>',
+        title: 'Delete',
+        result: function result() {
+        return alert('Vue');
+        }
+    }, {
+        // 扩展一个删除方法
+        name: 'Delete',
+        icon: '<b>D</b>',
+        title: 'Delete',
+        result: function result() {
+        return pell.exec('Delete');
+        }
+    }, 'bold', 'underline', {
+        name: 'italic',
+        result: function result() {
+        return pell.exec('italic');
+        }
+    }, {
+        // 扩展一个console.log方法
+        name: 'custom',
+        icon: '<b><u><i>C</i></u></b>',
+        title: 'Custom Action',
+        result: function result() {
+        return console.log('YOLO');
+        }
+    }, {
+        name: 'image',
+        result: function result() {
+        var url = window.prompt('Enter the image URL');
+        console.log(url);
+        // if (url) pell.exec('insertImage', ensureHTTP(url))
+        }
+    }, {
+        name: 'link',
+        result: function result() {
+        var url = window.prompt('Enter the link URL');
+        console.log(url);
+        // if (url) pell.exec('createLink', ensureHTTP(url))
+        }
+    }],
+    classes: {
+        actionbar: 'pell-actionbar',
+        button: 'pell-button',
+        content: 'pell-content'
+    }
+    });
+    // editor.content<HTMLElement>
+    // To change the editor's content:
+    editor.content.innerHTML = '<b><u><i>Initial content!</i></u></b>';
+  </script>
+</html>

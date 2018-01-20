@@ -1,0 +1,6 @@
+{
+    "name"      :   "my_First_App",
+    "version"   :   "0.1.0",
+    "main"      :   "./my_src/main2.js"
+
+}
