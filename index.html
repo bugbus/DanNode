@@ -33,7 +33,8 @@
   </head>
   <body>
     <div class="content" style="-webkit-app-region: drag">
-      <div id="pell" class="pell"></div>
+      <div id="pell" class="pell">
+      </div>
     </div>
     <html>
     <script src="pell/pell.js"></script>
@@ -50,26 +51,20 @@
           'bold',
           'underline',
           'italic',
+          'code',
+          'bianji',
+          'addButton',
           {
-            name: 'imdiv',
-            icon: '<div class=\'mdiv\'>T</div>',
-            title: 'imdiv',
-            result: function result() {
-              alert('imdiv')
+            name: 'CheckBox',
+            icon: 'C',
+            title: 'checkBox',
+            result:() =>{
+              var checkbox = document.createElement('input');
+              checkbox.type = 'checkbox';
+              document.getElementById('my_editdiv').appendChild(checkbox);
             }
-          },
-          {
-            name: 'zitalic',
-            icon: 'Z',
-            title: 'Zitalic',
-            result: () => window.pell.exec('italic')
-          },
+          }
         ]
-        // ],
-        // onChange: function (html) {
-        //   document.getElementById('text-output').innerHTML = html
-        //   document.getElementById('html-output').textContent = html
-        // }
       })
     </script>
     <script>

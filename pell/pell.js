@@ -9,6 +9,7 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var actions = {
+  //加粗
   bold: {
     icon: '<b>B</b>',
     title: 'Bold',
@@ -16,6 +17,7 @@ var actions = {
       return exec('bold');
     }
   },
+  //斜体字
   italic: {
     icon: '<i>I</i>',
     title: 'Italic',
@@ -23,6 +25,7 @@ var actions = {
       return exec('italic');
     }
   },
+  //下划线
   underline: {
     icon: '<u>U</u>',
     title: 'Underline',
@@ -30,6 +33,7 @@ var actions = {
       return exec('underline');
     }
   },
+  //删除线
   strikethrough: {
     icon: '<strike>S</strike>',
     title: 'Strike-through',
@@ -37,6 +41,7 @@ var actions = {
       return exec('strikeThrough');
     }
   },
+  //标题1号字
   heading1: {
     icon: '<b>H<sub>1</sub></b>',
     title: 'Heading 1',
@@ -44,6 +49,7 @@ var actions = {
       return exec('formatBlock', '<H1>');
     }
   },
+  //标题2号字
   heading2: {
     icon: '<b>H<sub>2</sub></b>',
     title: 'Heading 2',
@@ -51,6 +57,7 @@ var actions = {
       return exec('formatBlock', '<H2>');
     }
   },
+  // 分段
   paragraph: {
     icon: '&#182;',
     title: 'Paragraph',
@@ -58,6 +65,7 @@ var actions = {
       return exec('formatBlock', '<P>');
     }
   },
+  // 引用
   quote: {
     icon: '&#8220; &#8221;',
     title: 'Quote',
@@ -65,6 +73,7 @@ var actions = {
       return exec('formatBlock', '<BLOCKQUOTE>');
     }
   },
+  // 顺序列
   olist: {
     icon: '&#35;',
     title: 'Ordered List',
@@ -72,6 +81,7 @@ var actions = {
       return exec('insertOrderedList');
     }
   },
+  // 无序列
   ulist: {
     icon: '&#8226;',
     title: 'Unordered List',
@@ -79,6 +89,7 @@ var actions = {
       return exec('insertUnorderedList');
     }
   },
+  //添加一个块标签
   code: {
     icon: '&lt;/&gt;',
     title: 'Code',
@@ -86,6 +97,7 @@ var actions = {
       return exec('formatBlock', '<PRE>');
     }
   },
+  //加一航线
   line: {
     icon: '&#8213;',
     title: 'Horizontal Line',
@@ -116,6 +128,29 @@ var actions = {
       var url = window.prompt("close");
       console.log("colse");
     }
+  },
+  bianji:{
+    icon:'bian',
+    title:'Bian',
+    result:function result(){
+      return exec('2D-Position');
+      //document.execCommand("2D-Position","false","true");
+    }
+  },
+  nobianji:{
+    icon:'Nobian',
+    title:'noBian',
+    result:function result(){
+      return exec('AbsolutePosition','true');
+      //document.execCommand("2D-Position","false","true");
+    }
+  },
+  addButton:{
+    icon: 'BUT',
+    title: 'But',
+    result: function result(){
+      return exec('InsertButton');
+    }
   }
 
 };
@@ -130,10 +165,36 @@ var classes = {
 };
 
 var exec = function exec(command) {
+
   var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  // if(command != 'InsertButton'){
+  //   document.execCommand(command, false, value);
+  //   return;
+  // }
+
+  if(command == 'InsertButton')
+  {
+    if(document.execCommand('InsertInputCheckbox', false, "aa")){
+      console.log("InsertInputCheckbox");
+    }else{
+      console.log("no_InsertInputCheckbox");
+    }
+    return;
+  }
+  if(command == '2D-Position')
+  {
+    if(document.execCommand('2D-Position', false, true)){
+      console.log("2D-Position");
+    }else{
+      console.log("yes_2D-Position");
+    }
+    return;
+  }
 
   document.execCommand(command, false, value);
-};
+  return;
+
+ };
 
 var preventTab = function preventTab(event) {
   if (event.which === 9) event.preventDefault();
@@ -194,7 +255,7 @@ var init = function init(settings) {
   settings.element.content.contentEditable = true;
   settings.element.content.className = settings.classes.content;
   settings.element.content.oninput = function (event) {
-    return settings.onChange(event.target.innerHTML);
+    //return settings.onChange(event.target.innerHTML);
   };
   settings.element.content.onkeydown = preventTab;
   settings.element.appendChild(settings.element.content);
