@@ -167,29 +167,6 @@ var classes = {
 var exec = function exec(command) {
 
   var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  // if(command != 'InsertButton'){
-  //   document.execCommand(command, false, value);
-  //   return;
-  // }
-
-  if(command == 'InsertButton')
-  {
-    if(document.execCommand('InsertInputCheckbox', false, "aa")){
-      console.log("InsertInputCheckbox");
-    }else{
-      console.log("no_InsertInputCheckbox");
-    }
-    return;
-  }
-  if(command == '2D-Position')
-  {
-    if(document.execCommand('2D-Position', false, true)){
-      console.log("2D-Position");
-    }else{
-      console.log("yes_2D-Position");
-    }
-    return;
-  }
 
   document.execCommand(command, false, value);
   return;
